@@ -1,0 +1,15 @@
+- hosts : all
+  become: true
+
+  tasks:
+  - name:  update apt
+    command : apt update
+
+  - name: install docker
+    command: sudo apt install -y docker.io
+
+  - name start docker service
+    command: sudo systemctl docker start
+
+  - name: deploy application
+    command : sudo docker run -itd -p 8086:8080 shubhamkushwah123/addressbook:1.0
